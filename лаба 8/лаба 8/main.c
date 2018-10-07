@@ -6,7 +6,7 @@ void process_line( char buffer[] );
 void main( void )
 {
     char line[MAXLINE];
-    gets( line );
+    fgets( line, MAXLINE, stdin );
     process_line( line );
     puts( line );
 }
@@ -29,14 +29,14 @@ void process_line( char buffer[] )
     {
         c = *buf_ptr;
         
-        if( c==' ' || c=='.' || c==',' || c=='\n' || c=='\0')
+        if((c < 'a' || c >'z') && (c < 'A' || c > 'Z'))
         {
             if( flag == YES )
             {
                 end = buf_ptr - 1;
                 if( found == YES )
                 {
-                    char *src = end + 1;
+                    char *src = end+1;
                     char *dst = begin;
                     while( (*dst++ = *src++ ) != '\0' );
                     buf_ptr = begin;
